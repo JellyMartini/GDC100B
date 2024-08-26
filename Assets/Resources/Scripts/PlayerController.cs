@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour
     private PlayerInput m_playerInput;
     private InputAction moveAction;
 
+    public float moveSpeed;
+
+    private Vector2 velocity = Vector2.zero;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,8 +25,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 velocity = moveAction.ReadValue<Vector2>();
+        velocity = moveAction.ReadValue<Vector2>();
+    }
 
-        m_rigidbody.AddForce(new Vector3(velocity.x, velocity.y));
+    private void FixedUpdate()
+    {
+        MoveCharacter(velocity);
+    }
+
+    private void MoveCharacter(Vector2 direction)
+    {
+        m_rigidbody.velocity = new Vector3(1.0f + direction.x, direction.y) * moveSpeed * Time.fixedDeltaTime;
     }
 }
