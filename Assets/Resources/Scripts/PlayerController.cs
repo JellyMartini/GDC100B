@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -21,13 +19,15 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
     public float coyoteTime, check_isGroundedTime;
 
+    private float view_model_offset;
+
     private Rigidbody rb;
     private Collider playerCollider;
 
     public Material groundMat;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         moveInput = 0.0f;
         initial_moveInput = 0.0f;
@@ -44,6 +44,9 @@ public class PlayerController : MonoBehaviour
 
         actionCoyote = 0.0f;
         actionTimer = 0.0f;
+
+        view_model_offset = GameObject.FindGameObjectWithTag("Isopod_ViewModel").transform.localPosition.y;
+        Debug.Log(view_model_offset);
     }
 
     // Update is called once per frame
@@ -110,9 +113,9 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-            if (check_isGrounded && Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))//, 1.0f, LayerMask.GetMask("Ignore Raycast")))
+            if (check_isGrounded && Physics.Raycast(transform.position + Vector3.up * view_model_offset, Vector3.down, out RaycastHit hit))//, 1.0f, LayerMask.GetMask("Ignore Raycast")))
             {
-                isGrounded = (hit.distance < 1.01f) ? true : false;
+                isGrounded = (hit.distance < 0.5f) ? true : false;
                 //Debug.Log(hit.collider.name.ToString() + ", " + isGrounded + ", " + hit.distance); 
                 if (isGrounded)
                 {
@@ -120,9 +123,9 @@ public class PlayerController : MonoBehaviour
                     {
                         gravity = -gravity;
                     }
-                    Debug.DrawLine(transform.position, transform.position + Vector3.down * hit.distance, Color.green);
+                    Debug.DrawLine(transform.position + Vector3.up * view_model_offset, transform.position + Vector3.down * hit.distance, Color.green);
                 }
-                else Debug.DrawLine(transform.position, transform.position + Vector3.down * hit.distance, Color.red);
+                else Debug.DrawLine(transform.position + Vector3.up * view_model_offset, transform.position + Vector3.down * hit.distance, Color.red);
             }
         Vector3 velocity = (Vector3.right * moveInput * moveSpeed + Vector3.up * verticalSpeed) * Time.fixedDeltaTime;
         transform.Translate(velocity);

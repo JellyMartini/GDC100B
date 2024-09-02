@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - NPC
+  - Isopod_Collision
+  - Isopod_ViewModel
+  - Isopod
   layers:
   - Default
   - TransparentFX
