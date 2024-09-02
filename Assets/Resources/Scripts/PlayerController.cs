@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Callbacks;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,13 +15,16 @@ public class PlayerController : MonoBehaviour
     public float slow, mid, fast;
     public float moveSpeed;
     public float verticalSpeed, gravity;
-    private bool isGrounded;
+    private bool isGrounded, check_isGrounded;
     private bool tryJump, tryBurrow;
-    private float jumpTimer, burrowTimer;
+    private float actionCoyote, actionTimer;
     public float jumpSpeed;
-    public float coyoteTime;
+    public float coyoteTime, check_isGroundedTime;
 
     private Rigidbody rb;
+    private Collider playerCollider;
+
+    public Material groundMat;
 
     // Start is called before the first frame update
     void Start()
@@ -32,9 +36,14 @@ public class PlayerController : MonoBehaviour
         interpWeight_moveInput = 0.0f;
 
         rb = GetComponent<Rigidbody>();
+        playerCollider = GetComponentInChildren<Collider>();
 
         isGrounded = true;
+        check_isGrounded = true;
         tryJump = false;
+
+        actionCoyote = 0.0f;
+        actionTimer = 0.0f;
     }
 
     // Update is called once per frame
@@ -46,58 +55,77 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded) 
         {
-            if (verticalSpeed < 0.0f)
+            
+            if (verticalSpeed != 0.0f)
             {
                 verticalSpeed = 0.0f;
+                transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
+                groundMat.color = new Color(0.8f, 0.8f, 0.8f, 1.0f);
             }
             if (tryJump)
             {
+                check_isGrounded = false;
+                isGrounded = false;
                 verticalSpeed = jumpSpeed;
                 tryJump = false;
-                jumpTimer = 0.0f;
-            }
-            else if (tryBurrow)
+                actionCoyote = 0.0f;
+                actionTimer = 0.0f;
+            } else if (tryBurrow)
             {
+                groundMat.color = new Color(0.8f, 0.8f, 0.8f, 0.2f);
+                check_isGrounded = false;
+                isGrounded = false;
                 verticalSpeed = -jumpSpeed;
                 tryBurrow = false;
-                burrowTimer = 0.0f;
+                actionCoyote = 0.0f;
+                actionTimer = 0.0f;
                 if (Mathf.Sign(gravity) != -1.0f)
                 {
                     gravity = -gravity;
                 }
             }
+            
         }
         else
         {
             verticalSpeed -= gravity;
+        } 
+        
+
+        actionCoyote += Time.deltaTime;
+        actionTimer += Time.deltaTime;
+
+        if (actionCoyote > coyoteTime)
+        {
+            tryJump = false;
+            tryBurrow = false;
         }
 
-        jumpTimer += Time.deltaTime;
-        burrowTimer += Time.deltaTime;
-
-        if (jumpTimer > coyoteTime) tryJump = false;
-        if (burrowTimer > coyoteTime) tryBurrow = false;
-
+        if (actionTimer > check_isGroundedTime)
+        {
+            check_isGrounded = true;
+        }
         //Debug.Log("Move Input: " + moveInput.ToString() + ", Jump Input: " + jumpInput.ToString());
     }
 
     void FixedUpdate()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))//, 1.0f, LayerMask.GetMask("Ignore Raycast")))
-        {
-            isGrounded = (hit.distance < 1.01f) ? true : false;
-            //Debug.Log(hit.collider.name.ToString() + ", " + isGrounded + ", " + hit.distance); 
-            if (isGrounded)
+            if (check_isGrounded && Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit))//, 1.0f, LayerMask.GetMask("Ignore Raycast")))
             {
-                if (Mathf.Sign(gravity) != 1.0f)
+                isGrounded = (hit.distance < 1.01f) ? true : false;
+                //Debug.Log(hit.collider.name.ToString() + ", " + isGrounded + ", " + hit.distance); 
+                if (isGrounded)
                 {
-                    gravity = -gravity;
+                    if (Mathf.Sign(gravity) != 1.0f)
+                    {
+                        gravity = -gravity;
+                    }
+                    Debug.DrawLine(transform.position, transform.position + Vector3.down * hit.distance, Color.green);
                 }
-                Debug.DrawLine(transform.position, transform.position + Vector3.down * hit.distance, Color.green);
+                else Debug.DrawLine(transform.position, transform.position + Vector3.down * hit.distance, Color.red);
             }
-            else Debug.DrawLine(transform.position, transform.position + Vector3.down * hit.distance, Color.red);
-        }
-        rb.velocity = (Vector3.right * moveInput * moveSpeed + Vector3.up * verticalSpeed) * Time.fixedDeltaTime;
+        Vector3 velocity = (Vector3.right * moveInput * moveSpeed + Vector3.up * verticalSpeed) * Time.fixedDeltaTime;
+        transform.Translate(velocity);
     }
 
     public void OnMoveInput(InputAction.CallbackContext callbackContext)
@@ -125,6 +153,7 @@ public class PlayerController : MonoBehaviour
         if (callbackContext.performed)
         {
             tryJump = true;
+            tryBurrow = false;
         }
     }
 
@@ -133,6 +162,7 @@ public class PlayerController : MonoBehaviour
         if (callbackContext.performed && isGrounded)
         {
             tryBurrow = true;
+            tryJump = false;
         }
     }
 }
