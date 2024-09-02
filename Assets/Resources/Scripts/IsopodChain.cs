@@ -7,7 +7,7 @@ public class IsopodChain : MonoBehaviour
     public GameObject IsopodPrefab;
     public float child_offset;
     public int max_child_count;
-    private List<GameObject> isopodChain;
+    public List<GameObject> isopodChain;
     // Start is called before the first frame update
     void Start()
     {

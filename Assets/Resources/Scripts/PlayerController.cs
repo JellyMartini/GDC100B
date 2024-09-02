@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour
 
     private float view_model_offset;
 
-    private Rigidbody rb;
-    private Collider playerCollider;
+    //private Rigidbody rb;
+    //private Collider playerCollider;
 
     public Material groundMat;
 
@@ -35,8 +35,8 @@ public class PlayerController : MonoBehaviour
 
         interpWeight_moveInput = 0.0f;
 
-        rb = GetComponent<Rigidbody>();
-        playerCollider = GetComponentInChildren<Collider>();
+        //rb = GetComponent<Rigidbody>();
+        //playerCollider = GetComponentInChildren<Collider>();
 
         isGrounded = true;
         check_isGrounded = true;
@@ -56,6 +56,12 @@ public class PlayerController : MonoBehaviour
 
         interpWeight_moveInput = Mathf.Clamp01(interpWeight_moveInput + interpSpeed_moveInput * Time.deltaTime);
 
+        if ((Mathf.Sign(gravity) == -1.0f && transform.position.y > 1.0f) || (Mathf.Sign(gravity) == 1.0f && transform.position.y < -1.0f))
+        {
+            verticalSpeed = 0.0f;
+            transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
+        } 
+
         if (isGrounded) 
         {
             
@@ -63,7 +69,7 @@ public class PlayerController : MonoBehaviour
             {
                 verticalSpeed = 0.0f;
                 transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
-                groundMat.color = new Color(0.8f, 0.8f, 0.8f, 1.0f);
+                groundMat.color = new Color(0.8f, 0.55f, 0.4f, 0.8f);
             }
             if (tryJump)
             {
@@ -75,7 +81,7 @@ public class PlayerController : MonoBehaviour
                 actionTimer = 0.0f;
             } else if (tryBurrow)
             {
-                groundMat.color = new Color(0.8f, 0.8f, 0.8f, 0.2f);
+                groundMat.color = new Color(0.8f, 0.55f, 0.4f, 0.2f);
                 check_isGrounded = false;
                 isGrounded = false;
                 verticalSpeed = -jumpSpeed;
@@ -166,6 +172,14 @@ public class PlayerController : MonoBehaviour
         {
             tryBurrow = true;
             tryJump = false;
+        }
+    }
+    
+    public void OnCancel(InputAction.CallbackContext callbackContext)
+    {
+        if (callbackContext.performed)
+        {
+            Application.Quit();
         }
     }
 }
