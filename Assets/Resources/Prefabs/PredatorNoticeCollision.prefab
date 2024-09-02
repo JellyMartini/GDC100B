@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7724221297254654180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.33, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,10 +42,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7724221297254654180}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
+  m_Size: {x: 3, y: 100, z: 20}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3853707277911830008
 MonoBehaviour:
@@ -59,9 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da0272d5d2dd3adfb952bf53e5332a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notice_offset: 30
+  notice_offset: 70
   predator_offset: 5
   PredatorPrefab: {fileID: 7532661654737216943, guid: ba79af9975c51c3b0ad42a07554187fa, type: 3}
+  ObstaclePrefab: {fileID: 6987841040927619224, guid: 6baa509cbf07cd39e99889425f76e49b, type: 3}
 --- !u!54 &2590387469797429994
 Rigidbody:
   m_ObjectHideFlags: 0

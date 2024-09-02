@@ -8,6 +8,8 @@ TagManager:
   - Isopod_Collision
   - Isopod_ViewModel
   - Isopod
+  - Predator
+  - Obstacle
   layers:
   - Default
   - TransparentFX
