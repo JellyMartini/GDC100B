@@ -39,7 +39,7 @@ public class ObstacleComponent : MonoBehaviour
             else
             {
                 GameObject tempPredator = GameObject.FindGameObjectWithTag("Predator");
-                Destroy(tempPredator);
+                tempPredator.transform.SetParent(null);
 
                 foreach (GameObject collider in GameObject.FindGameObjectsWithTag("Obstacle"))
                 {

@@ -31,6 +31,7 @@ public class PredatorNotices : MonoBehaviour
         
         if (other.gameObject.CompareTag("Isopod_Collision"))
         {
+            Destroy(GameObject.FindGameObjectWithTag("Predator"));
             //Debug.Log("I'm Hit!");
             GameObject tempNotice = Instantiate(gameObject, transform.parent);
             tempNotice.transform.position += Vector3.right * notice_offset;
@@ -39,7 +40,7 @@ public class PredatorNotices : MonoBehaviour
             tempPredator.transform.position += Vector3.left * (IsopodChainRef.isopodChain.Count * IsopodChainRef.child_offset + predator_offset);
 
             GameObject tempObstacle = Instantiate(ObstaclePrefab);
-            tempObstacle.transform.position = tempNotice.transform.position - Vector3.right * (notice_offset / 2.0f);
+            tempObstacle.transform.position = tempNotice.transform.position - Vector3.right * (notice_offset / 3.0f);
             Destroy(gameObject);
         }
     }

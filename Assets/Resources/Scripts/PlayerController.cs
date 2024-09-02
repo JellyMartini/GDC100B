@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         moveInput = 0.0f;
-        initial_moveInput = 0.0f;
-        target_moveInput = 0.0f;
+        initial_moveInput = mid;
+        target_moveInput = mid;
 
         interpWeight_moveInput = 0.0f;
 

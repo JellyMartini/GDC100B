@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da0272d5d2dd3adfb952bf53e5332a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  notice_offset: 70
+  notice_offset: 100
   predator_offset: 5
   PredatorPrefab: {fileID: 7532661654737216943, guid: ba79af9975c51c3b0ad42a07554187fa, type: 3}
   ObstaclePrefab: {fileID: 6987841040927619224, guid: 6baa509cbf07cd39e99889425f76e49b, type: 3}
