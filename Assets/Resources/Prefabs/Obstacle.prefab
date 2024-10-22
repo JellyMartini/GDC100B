@@ -86,7 +86,7 @@ GameObject:
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 126
   m_IsActive: 1
 --- !u!4 &8770791084872469358
 Transform:
@@ -129,8 +129,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passable: 0
-  stone_mat: {fileID: 2100000, guid: 93ebbd32e5da6bbcbae4f1008b3b82e8, type: 2}
-  dirt_mat: {fileID: 2100000, guid: 76c3d1b8578445b089591376630ca44f, type: 2}
+  stone_mat: {fileID: 2100000, guid: ab81237d45cb4e948abf2ad2b4347ae6, type: 2}
+  dirt_mat: {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
   meshRenderer: {fileID: 0}
 --- !u!33 &8770791084872469346
 MeshFilter:
@@ -160,7 +160,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 76c3d1b8578445b089591376630ca44f, type: 2}
+  - {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -259,7 +259,7 @@ GameObject:
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 126
   m_IsActive: 1
 --- !u!4 &8770791085566699561
 Transform:
@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passable: 0
-  stone_mat: {fileID: 2100000, guid: 93ebbd32e5da6bbcbae4f1008b3b82e8, type: 2}
-  dirt_mat: {fileID: 2100000, guid: 76c3d1b8578445b089591376630ca44f, type: 2}
+  stone_mat: {fileID: 2100000, guid: ab81237d45cb4e948abf2ad2b4347ae6, type: 2}
+  dirt_mat: {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
   meshRenderer: {fileID: 0}
 --- !u!33 &8770791085566699565
 MeshFilter:
@@ -333,7 +333,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 76c3d1b8578445b089591376630ca44f, type: 2}
+  - {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -373,7 +373,7 @@ GameObject:
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 126
   m_IsActive: 1
 --- !u!4 &8770791085694412145
 Transform:
@@ -416,8 +416,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   passable: 0
-  stone_mat: {fileID: 2100000, guid: 93ebbd32e5da6bbcbae4f1008b3b82e8, type: 2}
-  dirt_mat: {fileID: 2100000, guid: 76c3d1b8578445b089591376630ca44f, type: 2}
+  stone_mat: {fileID: 2100000, guid: ab81237d45cb4e948abf2ad2b4347ae6, type: 2}
+  dirt_mat: {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
   meshRenderer: {fileID: 0}
 --- !u!33 &8770791085694412149
 MeshFilter:
@@ -447,7 +447,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 76c3d1b8578445b089591376630ca44f, type: 2}
+  - {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

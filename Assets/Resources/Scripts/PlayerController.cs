@@ -24,7 +24,8 @@ public class PlayerController : MonoBehaviour
     //private Rigidbody rb;
     //private Collider playerCollider;
 
-    public Material groundMat;
+    public GameObject ground;
+    private Material groundMat;
 
     // Start is called before the first frame update
     void Awake()
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
         view_model_offset = GameObject.FindGameObjectWithTag("Isopod_ViewModel").transform.localPosition.y;
         Debug.Log(view_model_offset);
+        groundMat = ground.GetComponent<Renderer>().material;
     }
 
     // Update is called once per frame
@@ -69,7 +71,7 @@ public class PlayerController : MonoBehaviour
             {
                 verticalSpeed = 0.0f;
                 transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
-                groundMat.color = new Color(0.8f, 0.55f, 0.4f, 0.8f);
+                groundMat.SetFloat("_Alpha", 0.2f);
             }
             if (tryJump)
             {
@@ -81,7 +83,7 @@ public class PlayerController : MonoBehaviour
                 actionTimer = 0.0f;
             } else if (tryBurrow)
             {
-                groundMat.color = new Color(0.8f, 0.55f, 0.4f, 0.2f);
+                groundMat.SetFloat("_Alpha", 0.8f);
                 check_isGrounded = false;
                 isGrounded = false;
                 verticalSpeed = -jumpSpeed;

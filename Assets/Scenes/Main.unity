@@ -244,7 +244,7 @@ MonoBehaviour:
   jumpSpeed: 40
   coyoteTime: 1
   check_isGroundedTime: 0.2
-  groundMat: {fileID: 2100000, guid: 9af68330ee4dbaa418e83fa8fa83c17c, type: 2}
+  ground: {fileID: 1379355244}
 --- !u!114 &691623540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -740,7 +740,7 @@ Camera:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_RenderingPath: 0
+  m_RenderingPath: 3
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
@@ -838,6 +838,7 @@ GameObject:
   - component: {fileID: 1379355246}
   - component: {fileID: 1379355249}
   - component: {fileID: 1379355250}
+  - component: {fileID: 1379355251}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -865,7 +866,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9af68330ee4dbaa418e83fa8fa83c17c, type: 2}
+  - {fileID: 2100000, guid: b9d06879b03d9ba46848d46ed9ec6d0e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -937,6 +938,18 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1379355251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1379355244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab27f8087b18f9f438a954e94ec570e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1505671860
 GameObject:
   m_ObjectHideFlags: 0
