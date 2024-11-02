@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2071211329259013522}
   - component: {fileID: 2071211329259013523}
   - component: {fileID: 5900075828147371190}
+  - component: {fileID: 5950853152905190820}
   m_Layer: 0
   m_Name: Predator
   m_TagString: Predator
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7532661654737216943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.24, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7532661654737216943}
-  m_Mesh: {fileID: 7584743269122902985, guid: f79a038960bb0f0449d3ef481deeedeb, type: 3}
+  m_Mesh: {fileID: -4167721708808019192, guid: 3720e14216fdd1fcbabb192a4716a577, type: 3}
 --- !u!23 &2071211329259013523
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -96,4 +97,16 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 12.334144, y: 10.390739, z: 4.313701}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 4.39, z: 0}
+--- !u!114 &5950853152905190820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7532661654737216943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 030a0095b06d4b245bd0945718641756, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ObstacleComponent : MonoBehaviour
 {
@@ -40,6 +42,15 @@ public class ObstacleComponent : MonoBehaviour
             if (!passable)
             {
                 other.GetComponentInParent<PlayerController>().moveSpeed = -other.GetComponentInParent<PlayerController>().moveSpeed;
+                PredatorController tempPredator = GameObject.FindGameObjectWithTag("Predator").GetComponent<PredatorController>();
+                tempPredator.tally++;
+                if (tempPredator.tally >= tempPredator.tallyInterval) {
+                    tempPredator.tally = 0;
+                    List<GameObject> isopodChain = other.GetComponentInParent<IsopodChain>().isopodChain;
+                    Destroy(isopodChain.Last<GameObject>());
+                    isopodChain.RemoveAt(isopodChain.Count - 1);
+                    if (isopodChain.Count <= 0) SceneManager.LoadScene(3);
+                }
             }
             else
             {
