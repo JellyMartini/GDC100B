@@ -176,12 +176,4 @@ public class PlayerController : MonoBehaviour
             tryJump = false;
         }
     }
-    
-    public void OnCancel(InputAction.CallbackContext callbackContext)
-    {
-        if (callbackContext.performed)
-        {
-            Application.Quit();
-        }
-    }
 }

@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PassThrough_Red
-  m_Shader: {fileID: -6465566751694194690, guid: d33dfab4ea85aeb41854a7265fa05a7e, type: 3}
+  m_Name: GroundOpening
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -71,9 +71,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 0
+    - _Alpha: 0.2
     - _BUILTIN_QueueControl: 0
-    - _BUILTIN_QueueOffset: 0
+    - _BUILTIN_QueueOffset: 1
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
@@ -94,8 +94,8 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Albedo: {r: 1, g: 0.2, b: 0.2, a: 0}
-    - _Color: {r: 1, g: 0.4575472, b: 0.4575472, a: 1}
+    - _Albedo: {r: 0.3, g: 0.43, b: 0.43, a: 0}
+    - _Color: {r: 0.8, g: 0.58041745, b: 0.3882353, a: 0.8}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _PlayerScreenPos: {r: 0.5, g: 0.5, b: 0, a: 0}
   m_BuildTextureStacks: []
