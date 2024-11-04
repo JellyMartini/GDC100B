@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2789193901940429051}
-  - component: {fileID: 8770791085245482965}
   - component: {fileID: 8770791085245482964}
+  - component: {fileID: 2949096702741946924}
   m_Layer: 0
-  m_Name: Obstacle
+  m_Name: ObstacleEndless
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,21 +37,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8770791085245482965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6987841040927619224}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f9432338d516617b806fece3e022416, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  under: {fileID: 896389315692990188}
-  through: {fileID: 3866917026637676104}
-  over: {fileID: 7943118722394021578}
 --- !u!54 &8770791085245482964
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -68,6 +53,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &2949096702741946924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6987841040927619224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed46c3ed389043c4b829bf997996c520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  under: {fileID: 8770791084872469356}
+  through: {fileID: 8770791085566699567}
+  over: {fileID: 8770791085694412151}
 --- !u!1 &8770791084872469359
 GameObject:
   m_ObjectHideFlags: 0
@@ -78,9 +78,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8770791084872469358}
   - component: {fileID: 8770791084872469357}
+  - component: {fileID: 8770791084872469356}
   - component: {fileID: 8770791084872469346}
   - component: {fileID: 8770791084872469347}
-  - component: {fileID: 896389315692990188}
   m_Layer: 0
   m_Name: Under
   m_TagString: Obstacle
@@ -116,6 +116,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8770791084872469356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770791084872469359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a53f81aeaf5f5aa6a444853d8ad7f41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passable: 0
+  stone_mat: {fileID: 2100000, guid: ab81237d45cb4e948abf2ad2b4347ae6, type: 2}
+  dirt_mat: {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
+  meshRenderer: {fileID: 0}
 --- !u!33 &8770791084872469346
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -166,22 +182,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &896389315692990188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8770791084872469359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7613acba03326341b3d03be73746081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passable: 0
-  stone_mat: {fileID: 2100000, guid: ab81237d45cb4e948abf2ad2b4347ae6, type: 2}
-  dirt_mat: {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
-  meshRenderer: {fileID: 0}
 --- !u!1 &8770791085311121680
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +208,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8770791085311121680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30, y: 0, z: 9.6e-14}
+  m_LocalPosition: {x: -40, y: 0, z: 9.6e-14}
   m_LocalScale: {x: 2.3, y: 100, z: 7.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -251,9 +251,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8770791085566699561}
   - component: {fileID: 8770791085566699560}
+  - component: {fileID: 8770791085566699567}
   - component: {fileID: 8770791085566699565}
   - component: {fileID: 8770791085566699566}
-  - component: {fileID: 3866917026637676104}
   m_Layer: 0
   m_Name: Through
   m_TagString: Obstacle
@@ -289,6 +289,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8770791085566699567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770791085566699562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a53f81aeaf5f5aa6a444853d8ad7f41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passable: 0
+  stone_mat: {fileID: 2100000, guid: ab81237d45cb4e948abf2ad2b4347ae6, type: 2}
+  dirt_mat: {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
+  meshRenderer: {fileID: 0}
 --- !u!33 &8770791085566699565
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -339,22 +355,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3866917026637676104
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8770791085566699562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7613acba03326341b3d03be73746081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passable: 0
-  stone_mat: {fileID: 2100000, guid: ab81237d45cb4e948abf2ad2b4347ae6, type: 2}
-  dirt_mat: {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
-  meshRenderer: {fileID: 0}
 --- !u!1 &8770791085694412146
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,9 +365,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8770791085694412145}
   - component: {fileID: 8770791085694412144}
+  - component: {fileID: 8770791085694412151}
   - component: {fileID: 8770791085694412149}
   - component: {fileID: 8770791085694412150}
-  - component: {fileID: 7943118722394021578}
   m_Layer: 0
   m_Name: Over
   m_TagString: Obstacle
@@ -403,6 +403,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8770791085694412151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8770791085694412146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a53f81aeaf5f5aa6a444853d8ad7f41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passable: 0
+  stone_mat: {fileID: 2100000, guid: ab81237d45cb4e948abf2ad2b4347ae6, type: 2}
+  dirt_mat: {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
+  meshRenderer: {fileID: 0}
 --- !u!33 &8770791085694412149
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -453,19 +469,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7943118722394021578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8770791085694412146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7613acba03326341b3d03be73746081, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  passable: 0
-  stone_mat: {fileID: 2100000, guid: ab81237d45cb4e948abf2ad2b4347ae6, type: 2}
-  dirt_mat: {fileID: 2100000, guid: 8cdc4448972688c47808544e846cecc5, type: 2}
-  meshRenderer: {fileID: 0}

@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ObstacleComponent : MonoBehaviour
+public class ObstacleComponentEndless : MonoBehaviour
 {
     public bool passable;
     public Material stone_mat, dirt_mat;
@@ -19,7 +19,7 @@ public class ObstacleComponent : MonoBehaviour
 
     void Awake()
     {
-        //passable = (Random.value > 0.5f) ? true : false;
+        passable = (Random.value > 0.5f) ? true : false;
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         stone_mat = Resources.Load<Material>("Materials/PassThrough_Red");
@@ -42,25 +42,24 @@ public class ObstacleComponent : MonoBehaviour
             if (!passable)
             {
                 other.GetComponentInParent<PlayerController>().moveSpeed = -other.GetComponentInParent<PlayerController>().moveSpeed;
-                PredatorController tempPredator = playerTransform.GetComponentInChildren<PredatorController>();
+                PredatorController tempPredator = GameObject.FindGameObjectWithTag("Predator").GetComponent<PredatorController>();
                 tempPredator.tally++;
                 if (tempPredator.tally >= tempPredator.tallyInterval) {
                     tempPredator.tally = 0;
                     List<GameObject> isopodChain = other.GetComponentInParent<IsopodChain>().isopodChain;
                     Destroy(isopodChain.Last<GameObject>());
                     isopodChain.RemoveAt(isopodChain.Count - 1);
-                    if (isopodChain.Count <= 0) SceneManager.LoadScene("LevelLoseScreen");
+                    if (isopodChain.Count <= 0) SceneManager.LoadScene("EndlessLoseScreen");
                 }
             }
             else
             {
-                Transform tempPredator = playerTransform.GetComponentInChildren<PredatorController>().transform;
-                tempPredator.SetParent(null);
+                GameObject tempPredator = GameObject.FindGameObjectWithTag("Predator");
+                tempPredator.transform.SetParent(null);
 
-                foreach (Collider collider in GetComponentsInParent<Collider>())
+                foreach (GameObject collider in GameObject.FindGameObjectsWithTag("Obstacle"))
                 {
-                    collider.enabled = false;
-                    Debug.Log("turning off collider");
+                    collider.GetComponent<Collider>().enabled = false;
                 }
             }
         }

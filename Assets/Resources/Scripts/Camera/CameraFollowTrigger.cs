@@ -15,6 +15,6 @@ public class CameraFollowTrigger : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log(this.name + " Hit");
-        if (other.CompareTag("Isopod_Collision")) cameraController.follow = true;
+        if (other.CompareTag("Isopod_Collision")) cameraController.follow = !cameraController.follow;
     }
 }

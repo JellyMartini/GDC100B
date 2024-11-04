@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4159845170408725748}
   - component: {fileID: 3091072751293126880}
   - component: {fileID: 2590387469797429994}
-  - component: {fileID: 5492134214693689897}
+  - component: {fileID: 1293045203229893259}
   m_Layer: 0
-  m_Name: PredatorNoticeCollision
+  m_Name: PredatorNoticeCollisionEndless
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &5492134214693689897
+--- !u!114 &1293045203229893259
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -72,9 +72,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7724221297254654180}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5da0272d5d2dd3adfb952bf53e5332a5, type: 3}
+  m_Script: {fileID: 11500000, guid: 588b031524a8ec64f9f9d911ab743047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   notice_offset: 0
   predator_offset: 0
   PredatorPrefab: {fileID: 7532661654737216943, guid: ba79af9975c51c3b0ad42a07554187fa, type: 3}
+  ObstaclePrefab: {fileID: 6987841040927619224, guid: 730e3b2d7b2396f4b96447114881caf0, type: 3}

@@ -18,11 +18,26 @@ public class Master : MonoBehaviour
     {
         if (callbackContext.performed)
         {
-            Application.Quit();
+            CallQuit();
         }
     }
 
+    public void CallQuit()
+    {
+        Application.Quit();
+    }
+
     public void PressStart() {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Opening");
+    }
+
+    public void PlayLevel()
+    {
+        SceneManager.LoadScene("Level-1");
+    }
+
+    public void PlayEndless()
+    {
+        SceneManager.LoadScene("Main");
     }
 }

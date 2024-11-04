@@ -10,7 +10,7 @@ public class PredatorController : MonoBehaviour
     void Start()
     {
         tally = 0;
-        tallyInterval = 3;
+        tallyInterval = 2;
     }
 
     // Update is called once per frame

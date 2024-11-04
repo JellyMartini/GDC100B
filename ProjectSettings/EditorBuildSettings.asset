@@ -12,7 +12,19 @@ EditorBuildSettings:
     path: Assets/Scenes/Opening.unity
     guid: 146197fe589f7c9768ed318ceb71d8e9
   - enabled: 1
+    path: Assets/Scenes/Level-1.unity
+    guid: 06ab57ba0bf16b44d9d30c0223702c72
+  - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/EndlessLoseScreen.unity
+    guid: 41e559ff06271eb4ba80c734c920a56f
+  - enabled: 1
+    path: Assets/Scenes/LevelLoseScreen.unity
+    guid: d0d62448b3de1a84c9755073ed236dd6
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: ada256e115c561243bd911c15a270a01
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c28c33313c5452e4caeaff1051e771ef, type: 2}
