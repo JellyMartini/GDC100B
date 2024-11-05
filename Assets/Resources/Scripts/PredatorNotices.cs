@@ -28,14 +28,17 @@ public class PredatorNotices : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        
+        // when the player enters
         if (other.gameObject.CompareTag("Isopod_Collision"))
         {
+            // Destroy the predator that was following (save on loaded resources)
             if (GameObject.FindGameObjectWithTag("Predator") != null)
             {
                 //Destroy(GameObject.FindGameObjectWithTag("Predator"));
                 //Debug.Log("I'm Hit!");
             }
+            
+            // Spawn a new predator at the end of the isopod chain, + the predator offset
             GameObject tempPredator = Instantiate(PredatorPrefab, player);
             tempPredator.transform.position += Vector3.left * (IsopodChainRef.isopodChain.Count * IsopodChainRef.child_offset + predator_offset);
         }

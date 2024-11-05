@@ -8,6 +8,8 @@ public class ObstacleEndless : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // If the segmented obstacle generates as completely impassable,
+        // force the middle to be passable
         if (!under.passable && !over.passable) 
         {
             through.passable = true;

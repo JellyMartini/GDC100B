@@ -6,30 +6,32 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    // current input, the initial input, and the lerpto target input
     private float moveInput, initial_moveInput, target_moveInput;
+    private float interpWeight_moveInput; // lerp weight
+    public float interpSpeed_moveInput; // lerp speed
+    public float slow, mid, fast; // speed multipliers
+    public float moveSpeed; // player moveSpeed
+    public float verticalSpeed, gravity; // accumulated verticalSpeed to apply, gravity constant
+    private bool isGrounded, check_isGrounded; // is the character on the ground? Do we check if the player is on the ground?
+    private bool tryJump, tryBurrow; // Did the player press jump or burrow?
+    private float actionCoyote, actionTimer; // so that the player can try burrowing just before actually able to enter that state
+    public float jumpSpeed; // determines jump height
+    public float coyoteTime, check_isGroundedTime; // so that the player can try jumping just before actually able to enter that state
 
-    private float interpWeight_moveInput;
-    public float interpSpeed_moveInput;
-    public float slow, mid, fast;
-    public float moveSpeed;
-    public float verticalSpeed, gravity;
-    private bool isGrounded, check_isGrounded;
-    private bool tryJump, tryBurrow;
-    private float actionCoyote, actionTimer;
-    public float jumpSpeed;
-    public float coyoteTime, check_isGroundedTime;
-
+    // Where the isopod model is in relation to the GameObject
     private float view_model_offset;
 
     //private Rigidbody rb;
     //private Collider playerCollider;
 
-    public GameObject ground;
-    private Material groundMat;
+    public GameObject ground; // ground object
+    private Material groundMat; // turns more transparent when player burrows
 
     // Start is called before the first frame update
     void Awake()
     {
+        // initialise
         moveInput = 0.0f;
         initial_moveInput = mid;
         target_moveInput = mid;
@@ -53,11 +55,14 @@ public class PlayerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    {   // HANDLING INPUT IN UPDATE
+        // Interpolate between the four speeds (STOP, SLOW, MID, FAST) by lerping to whichever one was pressed
+        // Smoothly transitions between speeds
         moveInput = Mathf.Lerp(initial_moveInput, target_moveInput, interpWeight_moveInput);
-
         interpWeight_moveInput = Mathf.Clamp01(interpWeight_moveInput + interpSpeed_moveInput * Time.deltaTime);
 
+        // if the player is rising above the ground after burrowing, or sinking after jumping, set the verticalSpeed to 0
+        // then snap the player to the ground
         if ((Mathf.Sign(gravity) == -1.0f && transform.position.y > 1.0f) || (Mathf.Sign(gravity) == 1.0f && transform.position.y < -1.0f))
         {
             verticalSpeed = 0.0f;
@@ -73,7 +78,7 @@ public class PlayerController : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, 1.0f, transform.position.z);
                 groundMat.SetFloat("_Alpha", 0.2f);
             }
-            if (tryJump)
+            if (tryJump) // if the player pressed jump within actionCoyote of touching the ground, jump
             {
                 check_isGrounded = false;
                 isGrounded = false;
@@ -81,7 +86,7 @@ public class PlayerController : MonoBehaviour
                 tryJump = false;
                 actionCoyote = 0.0f;
                 actionTimer = 0.0f;
-            } else if (tryBurrow)
+            } else if (tryBurrow) // if the player pressed burrow within actionCoyote of touching the ground, burrow
             {
                 groundMat.SetFloat("_Alpha", 0.8f);
                 check_isGrounded = false;
@@ -90,6 +95,7 @@ public class PlayerController : MonoBehaviour
                 tryBurrow = false;
                 actionCoyote = 0.0f;
                 actionTimer = 0.0f;
+                // burrowing is like upside down jumping, which means gravity has to go the other way
                 if (Mathf.Sign(gravity) != -1.0f)
                 {
                     gravity = -gravity;
@@ -97,7 +103,7 @@ public class PlayerController : MonoBehaviour
             }
             
         }
-        else
+        else // if the player is in the air
         {
             verticalSpeed -= gravity;
         } 
@@ -120,7 +126,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
+    {   // HANDLING ACTUAL MOVEMENT IN FIXEDUPDATE
+            // if we are checking for isGrounded, see if the player is close enough to the ground
             if (check_isGrounded && Physics.Raycast(transform.position + Vector3.up * view_model_offset, Vector3.down, out RaycastHit hit))//, 1.0f, LayerMask.GetMask("Ignore Raycast")))
             {
                 isGrounded = (hit.distance < 0.5f) ? true : false;
@@ -141,6 +148,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveInput(InputAction.CallbackContext callbackContext)
     {
+        // When the player makes an input on a dpad, or arrowpad, or left control stick
+        // interpret it as one of the moveSpeed multipliers
         if (callbackContext.performed)
         {
             Vector2 temp = callbackContext.ReadValue<Vector2>();
@@ -150,7 +159,7 @@ public class PlayerController : MonoBehaviour
             else if (temp.x == 1.0f) target_moveInput = mid;
             else if (temp.y == 1.0f) target_moveInput = fast;
             
-
+            // initialise lerping
             initial_moveInput = moveInput;
             
             interpWeight_moveInput = 0.0f;
@@ -161,6 +170,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJumpInput(InputAction.CallbackContext callbackContext)
     {
+        // if the player pressed jump, then try to jump and do not burrow
         if (callbackContext.performed)
         {
             tryJump = true;
@@ -170,6 +180,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnBurrowInput(InputAction.CallbackContext callbackContext)
     {
+        // if the player pressed burrow, then try to burrow and do not jump
         if (callbackContext.performed && isGrounded)
         {
             tryBurrow = true;
